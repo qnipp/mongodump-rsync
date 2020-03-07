@@ -16,7 +16,7 @@ ENV TARBZ2_PATH /tmp
 ENV SSH_DIR /ssh
 ENV RSYNC_TARGET backup:/var/lib/backup
 
-USER rsync-backup
+USER 9999
 
 VOLUME [ "/ssh" ]
 
