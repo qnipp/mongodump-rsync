@@ -8,7 +8,11 @@ cd "$DUMP_PATH"
 tar cvfj "$BACKUP_FILE" .
 
 mkdir ~/.ssh
-cp -r $SSH_DIR/* ~/.ssh
+cd $SSH_DIR
+for i in * ; do
+  # make real files from symlinks, necessary for mounted secrets on k8s
+  cat "$i" > ~/.ssh/"$i"
+done
 chmod 600 ~/.ssh/id_rsa
 
 rsync -vz "$BACKUP_FILE" "$RSYNC_TARGET/"
